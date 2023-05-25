@@ -2,7 +2,7 @@
 class MesaDeExamen 
  {
     public int $ID;
-    public DateTime  $Fecha ;
+    public string  $Fecha ;
     public Materia $Materia;
     public Profesor $Profesor;
 
