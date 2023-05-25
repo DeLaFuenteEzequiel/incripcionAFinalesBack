@@ -1,5 +1,5 @@
 <?php 
-public class IncriptoPorMesa
+class IncriptoPorMesa
 {
     public int $ID;
     public MesaDeExamen $Mesa;
@@ -8,7 +8,7 @@ public class IncriptoPorMesa
     public function _construct(int $id, MesaDeExamen $mesa,Estudiante $estudiante)
     {
         $this->$ID = $id;
-        $this->$Mesa = $Mesa;
+        $this->$Mesa = $mesa;
         $this->$Estudiante = $estudiante;
 
     }

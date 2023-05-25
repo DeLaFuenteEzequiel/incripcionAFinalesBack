@@ -1,5 +1,5 @@
 <?php 
- public class DetalleEstudiante
+class DetalleEstudiante
  {
     public int $ID;
     public Estudiante $Estudiante;
@@ -9,7 +9,7 @@
     public function _construct(int $id, Estudiante $estudiante,Materia $materias ,string $estado)
     {
         $this->$ID =$id;
-        $this->$Estudiante = $estudiantE;
+        $this->$Estudiante = $estudiante;
         $this->$Materia = $materias;
         $this->$Estado = $estado;
     }
