@@ -51,7 +51,7 @@ class LogicaRol{
 
     public function ModificarRol(int $id,string $nombre){
         $input = $_POST;
-        $sql = "UPDATE usuarios SET Nombre = $nombre WHERE id=$id";
+        $sql = "UPDATE roles SET Nombre = $nombre WHERE id=$id";
         $estado = $this->conecBase->prepare($sql);
         //bindAllValues($estado, $input);
         $estado->execute();
