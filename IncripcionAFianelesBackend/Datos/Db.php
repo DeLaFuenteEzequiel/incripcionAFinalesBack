@@ -11,23 +11,22 @@
             $this->Host = 'localhost';
             $this->Db = 'finalesdb';
             $this->Usuario = 'root';
-            $this->Contra = "";
-            $this->Charset = 'utf8mb4';            
+            $this->Contra = "";       
         }
 
-        function conectar(){
+        public function conectar(){
             try{
 
-                $coneccion = "mysql:host=".$this->Host.";dbname=" . this->Db . ";charset=" . this->Charset . ;
+                $coneccion = "mysql:host=".$this->Host.";dbname=".$this->Db;
                 $options=[
                     PDO::ATTR_ERRMODE   => PDO::ERRMODE_EXCEPTION,
                     PDO::ATTR_EMULATE_PREPARES => false,
                 ];
-                $pdo = new PDO($coneccion,$this->User, $this->Password);
-                return $pdo
+                $pdo = new PDO($coneccion,$this->Usuario, $this->Contra);
+                return $pdo;
             }
             catch(Exception $e){                
-                return $e->getMessage();
+                exit($e->getMessage());
             }
         }
     }
