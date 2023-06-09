@@ -32,19 +32,20 @@ class LogicaProfesores{
     public function TraerProfesorPorApellido(string $apellido){
         //Mostrar uno o mas profesores por apellido
         $sql = $this->conecBase->prepare("SELECT * FROM profesores WHERE Apellido=:apellido");
-        $sql->bindParam(':apellido', $apellido, PDO::PARAM_STR);
-        $sql->execute();
+        $estado = $this -> conecBase -> prepare($sql);
+        $estado->bindParam(':apellido', $apellido, PDO::PARAM_STR);
+        $estado->execute();
         header("HTTP/1.1 200 OK");
-        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+        $result = $estado->fetchAll(PDO::FETCH_ASSOC);
         echo json_encode($result);
         exit();
     }
     public function CrearProfesor(string $nombre, string $apellido){
         $input = $_POST;
         $sql = "INSERT  INTO profesores (Nombre, Apellido) VALUES (:nombre,:apellido)";
-        $sql->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-        $sql->bindParam(':apellido', $apellido, PDO::PARAM_STR);
         $estado = $this -> conecBase -> prepare($sql);
+        $estado->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $estado->bindParam(':apellido', $apellido, PDO::PARAM_STR);
         $estado->execute();
         $postId=$this->conecBase->lastInsertId();
         if($postId){
@@ -55,15 +56,13 @@ class LogicaProfesores{
         }
     }
     public function ModificarProfesor_Nombre(int $id,string $nombre){
-        $input = $_POST;
         $sql = "UPDATE profesores SET Nombre = :nombre WHERE id=:id";
-        $sql->bindParam(':nombre', $nombre, PDO::PARAM_STR);
-        $sql->bindParam(':id', $id, PDO::PARAM_INT);
         $estado = $this->conecBase->prepare($sql);
+        $estado->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+        $estado->bindParam(':id', $id, PDO::PARAM_INT);
         $estado->execute();
-        $postId=$this->conecBase->lastInsertId();
-        if($postId){
-            $input['id']=$postId;
+        if($estado -> rowCount() > 0){
+            $input['id']=$id;
             header("HTTP/1.1 200 OK");
             echo json_encode($input);
             exit();
@@ -72,9 +71,9 @@ class LogicaProfesores{
     public function ModificarProfesor_Apellido(int $id,string $apellido){
         $input = $_POST;
         $sql = "UPDATE profesores SET Apellido = :apellido WHERE id=:id";
-        $sql->bindParam(':id', $id, PDO::PARAM_INT);
-        $sql->bindParam(':apellido', $apellido, PDO::PARAM_STR);
         $estado = $this->conecBase->prepare($sql);
+        $estado->bindParam(':id', $id, PDO::PARAM_INT);
+        $estado->bindParam(':apellido', $apellido, PDO::PARAM_STR);
         $estado->execute();
         $postId=$this->conecBase->lastInsertId();
         if($postId){
