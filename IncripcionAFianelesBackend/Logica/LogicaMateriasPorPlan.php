@@ -12,6 +12,25 @@
         {
             $this->base = new DB();
             $this->conecBase = $this->base->conectar();
+
+        }
+
+
+        public function TraerMateriaPorPlan(){                            
+            //Mostrar los incriptos
+            $sql = $this->conecBase->prepare("SELECT 
+                                            materia.ID as ID_Plan, 
+                                            materias.Nombre as Materia,
+                                            plan.nombre as Plan  
+                                           
+                                            from materiasporplan as Materia
+                                            inner join materias on materias.ID = Materia.ID_Materia
+                                            inner join plandeestudio as plan on plan.ID = Materia.ID_PlanDeEstudio";
+            $sql->execute();
+            $sql->setFetchMode(PDO::FETCH_ASSOC);
+            header("HTTP/1.1 200 OK");
+            echo json_encode($sql->fetchAll());
+            exit();                                 
         }
 
         public function CrearMateriasPorPlan(int $ID  ,int $ID_Materia ,int $ID_PlanDeestudio ){
