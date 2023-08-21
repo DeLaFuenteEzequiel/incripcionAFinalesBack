@@ -25,7 +25,7 @@
                                            
                                             from materiasporplan as Materia
                                             inner join materias on materias.ID = Materia.ID_Materia
-                                            inner join plandeestudio as plan on plan.ID = Materia.ID_PlanDeEstudio";
+                                            inner join plandeestudio as plan on plan.ID = Materia.ID_PlanDeEstudio");
             $sql->execute();
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");

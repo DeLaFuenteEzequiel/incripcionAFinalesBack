@@ -47,6 +47,7 @@
                 echo json_encode($input);
                 exit();
             }
+        }
 
             public function ModificarFechaMesaDeExamenes(int $ID,DateTime $Fecha){
                 $input = $_POST;

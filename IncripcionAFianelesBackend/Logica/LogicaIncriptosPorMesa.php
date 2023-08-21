@@ -28,7 +28,7 @@
                                             from inscriptospormesa as I
                                             inner join mesadeexamenes as M on M.ID = I.ID_MesaDeExamen
                                             inner join materias on materias.ID = M.ID_Materia
-                                            inner join estudiantes as e on e.ID = I.ID_Estudiante";
+                                            inner join estudiantes as e on e.ID = I.ID_Estudiante");
             $sql->execute();
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");
