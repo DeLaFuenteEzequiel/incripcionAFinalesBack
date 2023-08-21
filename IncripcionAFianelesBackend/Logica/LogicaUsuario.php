@@ -63,7 +63,20 @@
             }
         }
         
-
+        public function IniciarSesion(string $nombre, string $clave){
+            $sql = $this->conecBase->prepare("SELECT * FROM usuarios WHERE Nombre=$nombre AND Contra=$clave");
+            $sql->execute();
+            $user = $sql->fetch(PDO::FETCH_ASSOC);
+            if($user){
+                $notFound= "Datos incorrectos";
+                echo json_encode($notFound);
+            }else{
+                header("HTTP/1.1 200 OK");
+                echo json_encode($user);
+                exit();
+            }
+            
+        }
         
     }
 ?>

@@ -29,5 +29,11 @@
                 exit($e->getMessage());
             }
         }
+
+        //generar token
+
+       static public function jwt($id, $nombre){
+            
+       }
     }
 ?>
