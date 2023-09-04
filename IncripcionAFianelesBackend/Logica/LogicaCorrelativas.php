@@ -12,7 +12,7 @@ class LogicaCorrelativas{
     }
     // Metodos publicos
     public function TraerCorrelativas(){
-        $sql = $this-> conecBase->prepare(QuerySelectAll());
+        $sql = $this-> conecBase->prepare($this->QuerySelectAll());
         $sql -> execute();
         $sql -> setFetchMode(PDO::FETCH_ASSOC);
         header("HTTP/1.1 200 OK");
@@ -20,7 +20,7 @@ class LogicaCorrelativas{
         exit();
     }
     public function CrearCorrelativa(int $id_materia, int $id_correlativa){
-        $sql = $this-> conecBase->prepare(QueryInsert());
+        $sql = $this-> conecBase->prepare($this->QueryInsert());
         $estado = $this -> conecBase -> prepare($sql);
         $estado -> bindParam(':id_materia',$id_materia,PDO::PARAM_INT);
         $estado -> bindParam(':id_correlativa',$id_correlativa,PDO::PARAM_INT);
@@ -34,7 +34,7 @@ class LogicaCorrelativas{
         }
     }
     public function ModificarCorrelativa(int $id,int $id_correlativa){
-        $estado = $this->conecBase->prepare(QueryUpdate());
+        $estado = $this->conecBase->prepare($this->QueryUpdate());
         $estado->bindParam(':id', $id, PDO::PARAM_INT);
         $estado->bindParam(':id_correlativa', $id_correlativa, PDO::PARAM_INT);
         $estado->execute();
