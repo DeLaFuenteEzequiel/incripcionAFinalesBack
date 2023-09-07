@@ -3,20 +3,16 @@
   include "../Datos/Db.php";
   include "../Utilidades/Utilidades.php";
 
-
         class Carreras
         {
             private $base;
-            private $conectarBase;
-            
-            
-           
-        
-            public function __construc()
-            {
-                $this-> $base= new BD;
-                $conectarBase = $this->$base->conectar();
-            }
+            private $conecBase;
+
+        public function __construct()
+        {
+            $this->base = new DB();
+            $this->conecBase = $this->base->conectar();
+        }
 
 
             public function TraerCarreras(){                            
@@ -30,19 +26,16 @@
             }
 
             public function CrearCarrera(string $Nombre )
-            {
-                $input = $_POST;
+            {            
                 $sql = "INSERT INTO carreras(Nombre) VALUES ($Nombre)";
                 $estado = $this->conecBase->prepare($sql);
                 $estado->execute();
-                if($postId){
-                    $input['id']=$postId;
-                    header("HTTP/1.1 200 OK");
-                    echo json_encode($input);
-                    exit();
-                }
-
+                header("HTTP/1.1 200 OK");
+                echo json_encode($sql);
+                exit();
             }
+
+            
             public function ModificarCarreras(int $id,string $nombre ){
                 $input = $_POST;
                 $sql = "UPDATE carreras SET Nombre = $nombre, WHERE ID=$id";
@@ -56,6 +49,7 @@
                     echo json_encode($input);
                     exit();
                 }
+            }
 
         }
 ?>
