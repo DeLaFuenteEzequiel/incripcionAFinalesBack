@@ -1,4 +1,5 @@
 <?php 
+
     class DetalleEstudiante{
         public int $ID;
         public Estudiante $Estudiante;

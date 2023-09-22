@@ -63,9 +63,6 @@ class LogicaRol{
             exit();
         }
     }
-    
-    
-    
 }
 
 ?>

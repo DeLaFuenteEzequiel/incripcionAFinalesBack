@@ -31,6 +31,7 @@
 
             public function CrearPlanDeEstudio( string $Nombre, int $Carrera)
             {
+
                 $input=$_POST;
                 $sql="INSERT INTO usuarios(Nombre,ID_Carrera) VALUES ($Nombre, $Carrera)";
                 $estado=$this->conecBase->prepare($sql);
@@ -42,6 +43,7 @@
                     echo json_encode($input);
                     exit();
                 }
+
             }
             public function ModificarPlanDeEstudio(int $id,string $nombre,int $ID_Carrera ){
                 $input = $_POST;
