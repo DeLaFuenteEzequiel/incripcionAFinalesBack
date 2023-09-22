@@ -6,15 +6,13 @@
         class PlanEstudio
         {
             private $base;
-            private $conectarBase;
-           
+            private $conecBase;
         
             public function __construc ()
             {
                 $this-> base= new DB();
                 $this-> conectarBase = $this-> base ->conectar();
             }
-
 
             public function TraerPlanDeEstudio(){                            
                 //Mostrar todos los usuarios
@@ -36,7 +34,9 @@
                 $input = $_POST;
                 $sql = "INSERT INTO usuarios(Nombre,ID_Carrera) VALUES ($Nombre, $Carrera)";
                 $estado = $this->conectarBase->prepare($sql);
+
                 $estado->execute();
+                $postId=$this->conecBase->lastInsertId();
                 if($postId){
                     $input['id']=$postId;
                     header("HTTP/1.1 200 OK");
@@ -59,6 +59,5 @@
                     exit();
                 }
             }
-
         }
 ?>
