@@ -3,7 +3,7 @@
     include "../Datos/Db.php";
     include "../Utilidades/Utilidades.php";
 
-    class LogicaDetalleEstudiantes{
+    class LogicaMesaExamen{
 
         private $base;
         private $conecBase;

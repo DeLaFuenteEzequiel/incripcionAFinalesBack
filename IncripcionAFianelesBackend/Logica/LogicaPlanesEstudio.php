@@ -11,14 +11,14 @@
         
             public function __construc ()
             {
-                $this-> $base= new BD;
-                $this-> $conectarBase = $this-> $base ->conectar();
+                $this-> base= new DB();
+                $this-> conectarBase = $this-> base ->conectar();
             }
 
 
             public function TraerPlanDeEstudio(){                            
                 //Mostrar todos los usuarios
-                $sql = $this->conecBase->prepare("SELECT  
+                $sql = $this->conectarBase->prepare("SELECT  
                                                 p.ID as ID_PlanDeEstudio,
                                                 p.Nombre,
                                                 c.Nombre as nombre_carrera,
@@ -35,7 +35,7 @@
             {
                 $input = $_POST;
                 $sql = "INSERT INTO usuarios(Nombre,ID_Carrera) VALUES ($Nombre, $Carrera)";
-                $estado = $this->conecBase->prepare($sql);
+                $estado = $this->conectarBase->prepare($sql);
                 $estado->execute();
                 if($postId){
                     $input['id']=$postId;
@@ -58,7 +58,7 @@
                     echo json_encode($input);
                     exit();
                 }
-
+            }
 
         }
 ?>

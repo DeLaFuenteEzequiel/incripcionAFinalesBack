@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }
     else if ($datos->tipo == "eliminar")
             {
-                $logica->EliminarDetalleEstudiante($datos->ID_Detalle,$datos->ID_Materia)
+                $logica->EliminarDetalleEstudiante($datos->ID_Detalle,$datos->ID_Materia);
             }
     else 
             {
