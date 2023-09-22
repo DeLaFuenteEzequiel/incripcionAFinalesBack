@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin:*");
     include "../Logica/LogicaRol.php";
     $logica = new LogicaRol();
 
@@ -11,13 +12,17 @@
         $logica->TraerRolesPorID($id);
     }
 
-    if(isset($_POST["rol"])){
-        $result = json_decode($_POST["rol"]);    
-        $logica->CrearRol($result->$nombre);        
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $datos = json_decode(file_get_contents('php://input'));
+        if($datos != null){
+            if($datos->tipo == "crear"){
+                $logica->CrearRol($result->$nombre);
+            } else if($datos->tipo == "modificar"){
+                $logica->ModificarRol($result->id, $result->$nombre);
+            }else{
+                echo json_encode(array("datos mandados incorrectamente", "Error"));
+            }
+        } 
     }
 
-    if(isset($_POST["id"])){
-        $result = json_decode($_POST["id"]);
-        $logica->ModificarRol($result->id, $result->$nombre);
-    }
 ?>

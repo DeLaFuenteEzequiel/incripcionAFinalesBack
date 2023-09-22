@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin:*");
     include "../Logica/LogicaUsuario.php";    
     $logica = new LogicaUsuario();
     if(isset($_GET["/"])){

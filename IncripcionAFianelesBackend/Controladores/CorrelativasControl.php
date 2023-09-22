@@ -1,4 +1,5 @@
 <?php
+    header("Access-Control-Allow-Origin:*");
     include "../Logica/LogicaCorrelativas.php";
 
     $logica = new LogicaCorrelativas();

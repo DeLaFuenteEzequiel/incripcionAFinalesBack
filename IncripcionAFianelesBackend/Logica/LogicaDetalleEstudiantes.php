@@ -17,18 +17,19 @@
         public function TraerDetalleEstudiantes(){                            
             //Mostrar todos los detalles
             $sql = $this->conecBase->prepare(
-                "      SELECT 
-                                                  mesa.ID as ID_Mesa, 
-	                                              mesa.Fecha,
-                                                  m.Nombre as Materia,
-                                                  e.ID as ID_Estudiante   
-                                                  e.Nombre,
-                                                  e.Apellido,
-                                                  e.DNI,
+                "SELECT 
+                mesa.ID as ID_Mesa, 
+	            mesa.Fecha,
+                m.Nombre as Materia,
+                e.ID as ID_Estudiante   
+                e.Nombre,
+                e.Apellido,
+                e.DNI,
                                                  
-                                                  from mesadeexamenes as mesa
-                                                  inner join materias as m on m.ID = mesa.ID_Materia
-                                                  inner join estudiantes as e on e.ID = mesa.ID_Estudiante");
+                from mesadeexamenes as mesa
+                inner join materias as m on m.ID = mesa.ID_Materia
+                inner join estudiantes as e on e.ID = mesa.ID_Estudiante"
+            );
             $sql->execute();
             $sql->setFetchMode(PDO::FETCH_ASSOC);
             header("HTTP/1.1 200 OK");
@@ -127,7 +128,7 @@
             }
 
         }
+    }
 
         
-
-        ?>
+?>
