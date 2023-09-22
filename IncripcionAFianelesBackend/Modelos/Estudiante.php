@@ -6,7 +6,6 @@
             public string $Nombre;
             public string $Apellido;
             public string $DNI;
-           
         
             public function __construc(int $id,string $nombre,string $apellido,string $dni)
             {
@@ -14,7 +13,6 @@
                 $this-> Nombre = $nombre;
                 $this-> Apellido = $apellido;
                 $this-> DNI = $dni;
-
             }
 
 
