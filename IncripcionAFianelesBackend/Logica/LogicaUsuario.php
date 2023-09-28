@@ -34,11 +34,14 @@
         }
 
         public function CrearUsuario(string $nombre,string $contra, string $email, int $rol){
-            $input = $_POST;
             $sql = "INSERT INTO usuarios(Nombre, Contra, Email, ID_Rol) VALUES ($nombre, $contra, $email, $rol)";
-            $estado = $this->conecBase->prepare($sql);
+            $result= $this->conecBase->prepare($sql);
             //bindAllValues($estado, $input);
-            $estado->execute();
+            $result->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $result->bindParam(':contra', $contra, PDO::PARAM_STR);
+            $result->bindParam(':email', $email, PDO::PARAM_STR);
+            $result->bindParam(':rol', $rol, PDO::PARAM_STR);
+            $result->execute();
             $postId=$this->conecBase->lastInsertId();
             if($postId){
                 $input['id']=$postId;
@@ -49,17 +52,20 @@
         }
 
         public function ModificarUsuario(int $id,string $nombre,string $contra, string $email, int $rol){
-            $sql = "UPDATE usuarios SET Nombre = $nombre, Contra=$contra, Email=$email, ID_Rol=$rol WHERE id=$id";
-            $estado = $this->conecBase->prepare($sql);
+            $sql = "UPDATE usuarios SET Nombre = :nombre, Contra= :contra, Email= :email, ID_Rol= :rol WHERE id= :id";
+            $result = $this->conecBase->prepare($sql);
             //bindAllValues($estado, $input);
-            $estado->execute();
-            $postId=$this->conecBase->lastInsertId();
-            if($postId){
-                $input['respuesta']=$postId;
-                header("HTTP/1.1 200 OK");
-                echo json_encode($input);
-                exit();
-            }
+            $result->bindParam(':nombre', $nombre, PDO::PARAM_STR);
+            $result->bindParam(':contra', $contra, PDO::PARAM_STR);
+            $result->bindParam(':email', $email, PDO::PARAM_STR);
+            $result->bindParam(':rol', $rol, PDO::PARAM_STR);
+            $result->bindParam(':id', $id, PDO::PARAM_STR);
+            $result->execute();            
+            $input['Respuesta']="Exito";
+            header("HTTP/1.1 200 OK");
+            echo json_encode($input);
+            exit();
+            
         }
 
         public function IniciarSesion(string $nombre, string $clave){

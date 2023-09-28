@@ -17,7 +17,7 @@
             if($datos->tipo == "login"){
                 $logica->IniciarSesion($datos->nombre, hash("sha256",$datos->contra));
             } else if($datos->tipo == "modificar"){
-                $logica->ModificarUsuario($datos->id, $datos->nombre ,$datos->$contra, $datos->email, $datos->rol);
+                $logica->ModificarUsuario($datos->id, $datos->nombre ,hash("sha256",$datos->contra), $datos->email, $datos->rol);
             }else if($datos->tipo == "crear"){
                 $logica->CrearUsuario($datos->nombre, hash("sha256",$datos->contra), $datos->email, $datos->rol);
             }
