@@ -23,7 +23,7 @@
                                                 e.DNI,
                                                 e.Activo,
                                                 u.Nombre as nombre_usuario,
-                                                p.Nombre as nomplandeestudio,
+                                                p.Nombre as nomplandeestudio
 
                                                 from estudiantes as e 
                                                 inner join usuarios as u on u.ID=e.ID 
