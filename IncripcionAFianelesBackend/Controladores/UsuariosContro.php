@@ -18,7 +18,10 @@
                 $logica->IniciarSesion($datos->nombre, hash("sha256",$datos->contra));
             } else if($datos->tipo == "modificar"){
                 $logica->ModificarUsuario($datos->id, $datos->nombre ,$datos->$contra, $datos->email, $datos->rol);
-            }else{
+            }else if($datos->tipo == "crear"){
+                $logica->CrearUsuario($datos->nombre, hash("sha256",$datos->contra), $datos->email, $datos->rol);
+            }
+            else{
                 echo json_encode(array("datos mandados incorrectamente", "Error"));
             }
         } 

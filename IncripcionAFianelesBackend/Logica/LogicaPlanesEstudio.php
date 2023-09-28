@@ -11,12 +11,12 @@
             public function __construc ()
             {
                 $this-> base= new DB();
-                $this-> conectarBase = $this-> base ->conectar();
+                $this-> conecBase = $this-> base ->conectar();
             }
 
             public function TraerPlanDeEstudio(){                            
                 //Mostrar todos los usuarios
-                $sql = $this->conectarBase->prepare("SELECT  
+                $sql = $this->conecBase->prepare("SELECT  
                                                 p.ID as ID_PlanDeEstudio,
                                                 p.Nombre,
                                                 c.Nombre as nombre_carrera,
@@ -33,7 +33,7 @@
             {
                 $input = $_POST;
                 $sql = "INSERT INTO usuarios(Nombre,ID_Carrera) VALUES ($Nombre, $Carrera)";
-                $estado = $this->conectarBase->prepare($sql);
+                $estado = $this->conecBase->prepare($sql);
 
                 $estado->execute();
                 $postId=$this->conecBase->lastInsertId();

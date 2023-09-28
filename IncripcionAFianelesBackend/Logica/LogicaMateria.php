@@ -62,6 +62,7 @@
                 exit();
             }
         }
+    }
 
       /*  public function EliminarMateria (string $Nombre ,int $ID){
             $input = $_POST;

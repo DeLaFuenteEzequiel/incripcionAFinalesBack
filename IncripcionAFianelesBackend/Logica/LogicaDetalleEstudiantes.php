@@ -39,7 +39,7 @@
 
         public function CrearDetalleEstudiante(string $Estado,int $ID_Estudiante ,int $ID_Materia ){
             $input = $_POST;
-            $sql = "INSERT INTO detallesestudiante(ID_Estudiante,ID_Materia,Estado) VALUES ($ID_estudiante,$ID_Materia,$Estado)";
+            $sql = "INSERT INTO detallesestudiante(ID_Estudiante,ID_Materia,Estado) VALUES ($ID_Estudiante,$ID_Materia,$Estado)";
             $estado = $this->conecBase->prepare($sql);
             //bindAllValues($estado, $input); // nose que onda pero yo lo comento xD
             $estado->execute();
