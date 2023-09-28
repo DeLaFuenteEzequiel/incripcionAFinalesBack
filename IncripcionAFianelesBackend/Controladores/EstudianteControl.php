@@ -1,7 +1,8 @@
 <?php
     include "../Logica/LogicaEstudiante.php";
+    header("Access-Control-Allow-Origin:*");
 
-    $logica = new Estudiante();
+    $logica = new LogicaEstudiante();
 
     // Traer todas las materias con sus correlativas
     if(isset($_GET["/"])){
