@@ -3,7 +3,7 @@
     include "../Datos/Db.php";
     include "../Utilidades/Utilidades.php";
 
-        class Estudiante
+        class LogicaEstudiante
         {
 
             private $base;
@@ -35,11 +35,10 @@
                 exit();                                 
             }
             
-
             public function CrearEstudiante(string $Nombre,string $Apellido,string $DNI,int $Activo,int $ID_Usuario,int $ID_Plan)
             {
                 $input = $_POST;
-                $sql = "INSERT INTO estudiantes (Nombre,Apellido,DNI,Activo,ID_Usuario,ID_Plan) VALUES ($Nombre, $Apellido, $DNI, $Activo,$ID_Usuario,$ID_Plan)";
+                $sql = "INSERT INTO estudiantes(Nombre,Apellido,DNI,Activo,ID_Usuario,ID_Plan) VALUES ($Nombre, $Apellido, $DNI, $Activo,$ID_Usuario,$ID_Plan)";
                 $estado = $this->conecBase->prepare($sql);
                 $estado->execute();
 
