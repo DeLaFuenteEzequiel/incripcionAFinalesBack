@@ -9,7 +9,8 @@
             private $base;
             private $conecBase;
         
-            public function __construc(){
+            public function __construct()
+            {
                 $this->base = new DB();
                 $this->conecBase = $this->base->conectar();
             }
