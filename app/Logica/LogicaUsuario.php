@@ -23,7 +23,7 @@
             echo json_encode($sql->fetchAll());
             exit();                                 
         }
-
+        
         public function TraerUsuarioPorID(int $id){
             //Mostrar un usuario
             $sql = $this->conecBase->prepare("SELECT * FROM usuarios WHERE id=$id");
@@ -34,20 +34,20 @@
         }
 
         public function CrearUsuario(string $nombre,string $contra, string $email, int $rol){
-            $sql = "INSERT INTO usuarios(Nombre, Contra, Email, ID_Rol) VALUES ($nombre, $contra, $email, $rol)";
+            $sql = "INSERT INTO usuarios (Nombre, Contra, Email, ID_Rol) VALUES (:nombre, :contra, :email, :rol)";
             $result= $this->conecBase->prepare($sql);
             //bindAllValues($estado, $input);
             $result->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $result->bindParam(':contra', $contra, PDO::PARAM_STR);
             $result->bindParam(':email', $email, PDO::PARAM_STR);
-            $result->bindParam(':rol', $rol, PDO::PARAM_STR);
-            $result->execute();
+            $result->bindParam(':rol', $rol, PDO::PARAM_INT);
+            $result->execute();            
             $postId=$this->conecBase->lastInsertId();            
             $input['id']=$postId;
+            $input['DATOS'] = $result->errorInfo();
             header("HTTP/1.1 200 OK");
             echo json_encode($input);
-            exit();
-            
+            exit();        
         }
 
         public function ModificarUsuario(int $id,string $nombre,string $contra, string $email, int $rol){
@@ -57,8 +57,8 @@
             $result->bindParam(':nombre', $nombre, PDO::PARAM_STR);
             $result->bindParam(':contra', $contra, PDO::PARAM_STR);
             $result->bindParam(':email', $email, PDO::PARAM_STR);
-            $result->bindParam(':rol', $rol, PDO::PARAM_STR);
-            $result->bindParam(':id', $id, PDO::PARAM_STR);
+            $result->bindParam(':rol', $rol, PDO::PARAM_INT);
+            $result->bindParam(':id', $id, PDO::PARAM_INT);
             $result->execute();            
             $input['Respuesta']="Exito";
             header("HTTP/1.1 200 OK");
