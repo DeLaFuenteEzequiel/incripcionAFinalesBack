@@ -42,13 +42,12 @@
             $result->bindParam(':email', $email, PDO::PARAM_STR);
             $result->bindParam(':rol', $rol, PDO::PARAM_STR);
             $result->execute();
-            $postId=$this->conecBase->lastInsertId();
-            if($postId){
-                $input['id']=$postId;
-                header("HTTP/1.1 200 OK");
-                echo json_encode($input);
-                exit();
-            }
+            $postId=$this->conecBase->lastInsertId();            
+            $input['id']=$postId;
+            header("HTTP/1.1 200 OK");
+            echo json_encode($input);
+            exit();
+            
         }
 
         public function ModificarUsuario(int $id,string $nombre,string $contra, string $email, int $rol){

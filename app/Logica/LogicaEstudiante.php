@@ -1,5 +1,5 @@
 <?php  
-    include "../Modelos/Estudiantes.php";
+    include "../Modelos/Estudiante.php";
     include "../Datos/Db.php";
     include "../Utilidades/Utilidades.php";
 
@@ -10,7 +10,7 @@
             private $conecBase;
         
             public function __construc(){
-                $this->base = new DB;
+                $this->base = new DB();
                 $this->conecBase = $this->base->conectar();
             }
             
@@ -24,10 +24,9 @@
                                                 e.Activo,
                                                 u.Nombre as nombre_usuario,
                                                 p.Nombre as nomplandeestudio
-
                                                 from estudiantes as e 
-                                                inner join usuarios as u on u.ID=e.ID 
-                                                inner join planesdeestudio as p on p.ID=e.ID");
+                                                inner join usuarios as u on u.ID=e.ID_Usuario 
+                                                inner join planesdeestudio as p on p.ID=e.ID_Plan");
                 $sql->execute();
                 $sql->setFetchMode(PDO::FETCH_ASSOC);
                 header("HTTP/1.1 200 OK");
