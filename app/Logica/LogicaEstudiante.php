@@ -60,9 +60,14 @@
             public function ModificarEstudiantes(int $id,string $nombre,string $Apellido, string $DNI,int $ID_Plan ){
                 $input = $_POST;
                 $sql = "UPDATE estudiantes SET Nombre = $nombre, Apellido=$Apellido, DNI=$DNI, ID_Plan=$ID_Plan  WHERE ID=$id";
-                $estado = $this->conecBase->prepare($sql);
-                //bindAllValues($estado, $input);
-                $estado->execute();
+                $result = $this->conecBase->prepare($sql);
+                $result->bindParam(':nombre', $Nombre, PDO::PARAM_STR);
+                $result->bindParam(':apellido', $Apellido, PDO::PARAM_STR);
+                $result->bindParam(':dni', $DNI, PDO::PARAM_STR);
+                $result->bindParam(':id_plan', $ID_Plan, PDO::PARAM_INT);
+                $result->bindParam(':activo', $Activo, PDO::PARAM_INT);
+                $result->bindParam(':id_usuario', $ID_Usuario, PDO::PARAM_INT);
+                $result->execute();
                 $postId=$this->conecBase->lastInsertId();
                 if($postId){
                     $input['id']=$postId;
