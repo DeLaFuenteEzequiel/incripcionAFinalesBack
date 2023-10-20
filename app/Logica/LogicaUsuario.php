@@ -23,7 +23,7 @@
             echo json_encode($sql->fetchAll());
             exit();                                 
         }
-        
+
         public function TraerUsuarioPorID(int $id){
             //Mostrar un usuario
             $sql = $this->conecBase->prepare("SELECT * FROM usuarios WHERE id=$id");
@@ -43,8 +43,7 @@
             $result->bindParam(':rol', $rol, PDO::PARAM_INT);
             $result->execute();            
             $postId=$this->conecBase->lastInsertId();            
-            $input['id']=$postId;
-            $input['DATOS'] = $result->errorInfo();
+            $input['id']=$postId;            
             header("HTTP/1.1 200 OK");
             echo json_encode($input);
             exit();        

@@ -39,14 +39,14 @@
             {
                 $input = $_POST;
                 $sql = "INSERT INTO estudiantes(Nombre,Apellido,DNI,Activo,ID_Usuario,ID_Plan) VALUES (:nombre, :apellido, :dni, :activo, :id_usuario,:id_plan)";
-                $estado = $this->conecBase->prepare($sql);
+                $result = $this->conecBase->prepare($sql);
                 $result->bindParam(':nombre', $Nombre, PDO::PARAM_STR);
                 $result->bindParam(':apellido', $Apellido, PDO::PARAM_STR);
                 $result->bindParam(':dni', $DNI, PDO::PARAM_STR);
                 $result->bindParam(':id_plan', $ID_Plan, PDO::PARAM_INT);
                 $result->bindParam(':activo', $Activo, PDO::PARAM_INT);
                 $result->bindParam(':id_usuario', $ID_Usuario, PDO::PARAM_INT);
-                $estado->execute();
+                $result->execute();
                 $postId=$this->conecBase->lastInsertId();
 
                 if($postId){
